@@ -39,12 +39,14 @@ class Detector(
     fun setup() {
         val model = FileUtil.loadMappedFile(context, modelPath)
         val options = Interpreter.Options()
-        options.numThreads = 4
+        options.numThreads = 6
+        options.useNNAPI = true
         interpreter = Interpreter(model, options)
 
-        val inputShape = interpreter?.getInputTensor(0)?.shape() ?: return
-        val outputShape = interpreter?.getOutputTensor(0)?.shape() ?: return
-
+//        val inputShape = interpreter?.getInputTensor(0)?.shape() ?: return
+//        val outputShape = interpreter?.getOutputTensor(0)?.shape() ?: return
+        val inputShape = intArrayOf(1,640,640,3)
+        val outputShape = intArrayOf(1,6,8400)
         tensorWidth = inputShape[1]
         tensorHeight = inputShape[2]
         numChannel = outputShape[1]

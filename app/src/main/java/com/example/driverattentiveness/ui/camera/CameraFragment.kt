@@ -177,7 +177,7 @@ class CameraFragment : Fragment(),Detector.DetectorListener {
     }
     override fun onDetect(boundingBoxes: List<BoundingBox>, inferenceTime: Long) {
         viewLifecycleOwner.lifecycleScope.launch {
-            binding.inferenceTime.text = "${inferenceTime}ms"
+//            binding.inferenceTime.text = "${inferenceTime}ms"
             binding.overlay.apply {
                 setResults(boundingBoxes)
                 invalidate()
