@@ -46,5 +46,15 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_welcome"
             app:destination="@id/navigation_welcome" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_camera"
+            app:destination="@id/navigation_camera" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.example.driverattentiveness.ui.camera.CameraFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_camera" />
+
 </navigation>

@@ -35,7 +35,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        mlModelBinding = true
     }
+
+
 }
 
 dependencies {
@@ -48,6 +51,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.fragment.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.androidx.legacy.support.v4)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -61,4 +67,12 @@ dependencies {
     implementation (libs.androidx.fragment.ktx.v161)
     implementation (libs.androidx.navigation.fragment.ktx.v282)
     implementation (libs.androidx.navigation.ui.ktx.v282)
+    val cameraxVersion = "1.4.0-alpha03"
+    implementation("androidx.camera:camera-camera2:${cameraxVersion}")
+    implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
+    implementation("androidx.camera:camera-view:${cameraxVersion}")
+
+    implementation("org.tensorflow:tensorflow-lite:2.14.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+
 }

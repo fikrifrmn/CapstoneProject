@@ -35,10 +35,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 //        binding.logoutButton.setOnClickListener {
 //            findNavController().navigate(R.id.action_navigation_home_to_navigation_welcome)
 //        }
-
+        showBottomNavigation()
         setupView()
 //        playAnimation()
         return root
+    }
+    private fun showBottomNavigation() {
+        requireActivity().findViewById<View>(R.id.bottom_navigation_view)?.visibility = View.VISIBLE
     }
 
     private fun setupView() {

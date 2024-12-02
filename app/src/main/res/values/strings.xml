@@ -33,6 +33,9 @@
     <string name="home_StatisticAlertS">160</string>
     <string name="home_StatisticPercent">70%</string>
     <string name="home_StatisticSafetyS">89</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alert">Alert</string>
 
 
 </resources>
