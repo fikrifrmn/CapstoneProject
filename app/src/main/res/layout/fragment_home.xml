@@ -151,6 +151,7 @@
         app:layout_constraintStart_toStartOf="@+id/tvSafetyHome"
         app:layout_constraintTop_toBottomOf="@+id/tvSafetyHome" />
 
+<<<<<<< HEAD
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
@@ -163,6 +164,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvArticle"
+=======
+    <androidx.recyclerview.widget.RecyclerView
+>>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
         android:layout_width="334dp"
         android:layout_height="283dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal3"

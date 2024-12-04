@@ -5,12 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.driverattentiveness.data.UserRepository
+<<<<<<< HEAD
 import com.example.driverattentiveness.data.api.response.LoginResponse
+=======
+>>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 import com.example.driverattentiveness.data.pref.UserModel
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
+<<<<<<< HEAD
     private val _loginResponse = MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
 
@@ -42,6 +46,16 @@ class LoginViewModel(private val repository: UserRepository) : ViewModel() {
                 // Handle exception
                 _errorMessage.postValue(e.message ?: "An unexpected error occurred")
             }
+=======
+    private val _text = MutableLiveData<String>().apply {
+        value = "This is dashboard Fragment"
+    }
+    val text: LiveData<String> = _text
+
+    fun saveSession(user: UserModel) {
+        viewModelScope.launch {
+            repository.saveSession(user)
+>>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
         }
     }
 }

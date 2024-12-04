@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginFragment">
 
+<<<<<<< HEAD
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
@@ -16,6 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+=======
+>>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
