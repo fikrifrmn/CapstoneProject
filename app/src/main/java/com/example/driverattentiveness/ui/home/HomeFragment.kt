@@ -4,10 +4,8 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Build
 import android.os.Bundle
-<<<<<<< HEAD
+
 import android.util.Log
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-<<<<<<< HEAD
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.driverattentiveness.BuildConfig
 import com.example.driverattentiveness.R
@@ -28,19 +26,14 @@ import com.example.driverattentiveness.databinding.FragmentHomeBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-=======
-import com.example.driverattentiveness.R
-import com.example.driverattentiveness.databinding.FragmentHomeBinding
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var homeViewModel: HomeViewModel
-<<<<<<< HEAD
+
     private lateinit var adapter: ArticleAdapter
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -54,7 +47,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-<<<<<<< HEAD
         setupView()
         setupRecyclerView()
         findDataArticle()
@@ -69,16 +61,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             adapter = this@HomeFragment.adapter
         }
     }
-=======
-//        binding.logoutButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_navigation_home_to_navigation_welcome)
-//        }
-        showBottomNavigation()
-        setupView()
-//        playAnimation()
-        return root
-    }
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
     private fun showBottomNavigation() {
         requireActivity().findViewById<View>(R.id.bottom_navigation_view)?.visibility = View.VISIBLE
     }
@@ -97,7 +80,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
 
-<<<<<<< HEAD
+
     private fun findDataArticle() {
         showLoading()
         val apiKey = BuildConfig.API_KEY
@@ -142,38 +125,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.progressBar.visibility = android.view.View.GONE
     }
 
-=======
-//    private fun playAnimation(){
-//        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30F, 30F).apply {
-//            duration = 6000 //Mengatur seberapa lama animasi dijalankan.
-//            repeatCount = ObjectAnimator.INFINITE // Mengatur jumlah perulangan yang akan dilakukan.
-//            repeatMode = ObjectAnimator.REVERSE //Mengatur bagaimana perulangan akan dilakukan, apakah mengulang dari awal atau memutar secara berkebalikan (reverse).
-//            startDelay = 100 //Menunda jalannya animasi untuk sekian milisekon ms.
-//        }.start()
-//
-//        val tvName = ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1F).setDuration(300)
-//        val tvMessage = ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1F).setDuration(300)
-//        val btnLogout = ObjectAnimator.ofFloat(binding.logoutButton, View.ALPHA, 1F).setDuration(300)
-//
-//        val together = AnimatorSet().apply {
-//            playTogether(btnLogout)
-//        }
-//        AnimatorSet().apply {
-//            playSequentially( tvName, tvMessage, together)
-//            start()
-//        }
-//    }
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-<<<<<<< HEAD
+
 
     companion object {
         private const val TAG = "HomeFragment"
     }
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 }

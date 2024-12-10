@@ -17,7 +17,7 @@ import com.example.driverattentiveness.ViewModelFactory
 import com.example.driverattentiveness.data.pref.UserModel
 import com.example.driverattentiveness.databinding.FragmentLoginBinding
 
-<<<<<<< HEAD
+
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -25,22 +25,13 @@ class LoginFragment : Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
 
-=======
-class LoginFragment: Fragment() {
-    private var _binding: FragmentLoginBinding? = null
-    private lateinit var loginViewModel: LoginViewModel
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-<<<<<<< HEAD
+
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -58,22 +49,7 @@ class LoginFragment: Fragment() {
         setupAction()
         observeViewModel()
         hideBottomNavigation()
-=======
-//        val loginViewModel =
-//            ViewModelProvider(this)[LoginViewModel::class.java]
 
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        // Menggunakan ViewModelFactory untuk mendapatkan instance LoginViewModel
-        loginViewModel = ViewModelProvider(this, ViewModelFactory.getInstance(requireContext())).get(LoginViewModel::class.java)
-
-        setupView()
-        setupAction()
-        hideBottomNavigation()
-
-        return root
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
     }
 
     private fun setupView() {
@@ -92,31 +68,19 @@ class LoginFragment: Fragment() {
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
-<<<<<<< HEAD
+
             val password = binding.passwordEditText.text.toString()
 
             if (email.isBlank() || password.isBlank()) {
                 showFailedDialog("Email dan password tidak boleh kosong.")
             } else {
                 loginViewModel.login(email, password)
-=======
-            loginViewModel.saveSession(UserModel(email, "sample_token"))
-            AlertDialog.Builder(requireContext()).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                setPositiveButton("Lanjut") { _, _ ->
-                    // Navigasi ke HomeFragment
-                    val navController = findNavController()
-                    navController.navigate(R.id.action_navigation_login_to_navigation_home)
-                }
-                create()
-                show()
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
             }
         }
     }
 
-<<<<<<< HEAD
+
     private fun observeViewModel() {
         loginViewModel.loginResponse.observe(viewLifecycleOwner) { response ->
             if (response != null) {
@@ -156,8 +120,6 @@ class LoginFragment: Fragment() {
         }
     }
 
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
     private fun hideBottomNavigation() {
         requireActivity().findViewById<View>(R.id.bottom_navigation_view)?.visibility = View.GONE
     }
@@ -166,8 +128,6 @@ class LoginFragment: Fragment() {
         super.onDestroyView()
         _binding = null
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+

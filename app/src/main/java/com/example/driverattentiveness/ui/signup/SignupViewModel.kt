@@ -16,7 +16,7 @@ class SignupViewModel(private val userRepository: UserRepository) : ViewModel() 
                 val apiService = ApiConfig.getApiService(token = email)
                 val response = apiService.register(name, email, password,age)
                 val user = UserModel(email, password, isLogin = true)
-                userRepository.saveSession(user)
+//                userRepository.saveSession(user)
 
                 onSuccess(response)
 

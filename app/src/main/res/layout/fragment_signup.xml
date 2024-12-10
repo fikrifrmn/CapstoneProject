@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<<<<<<< HEAD
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressIndicator"
         android:layout_width="match_parent"
@@ -15,30 +15,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-=======
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:srcCompat="@drawable/ic_notifications_black_24dp" />
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-<<<<<<< HEAD
         android:layout_marginTop="8dp"
-=======
-        android:layout_marginTop="16dp"
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
         android:layout_marginEnd="32dp"
         android:text="@string/title_signup_page"
         android:textColor="@color/black"
@@ -47,13 +31,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
         app:layout_constraintTop_toTopOf="parent" />
-=======
-        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal"
-        android:alpha="0"
-        tools:alpha="100"/>
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
     <TextView
         android:id="@+id/nameTextView"
@@ -64,13 +43,7 @@
         android:text="@string/name"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
-=======
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        android:alpha="0"
-        tools:alpha="100"/>
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameEditTextLayout"
@@ -82,13 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-<<<<<<< HEAD
         app:startIconDrawable="@drawable/ic_notifications_black_24dp">
-=======
-        app:startIconDrawable="@drawable/ic_notifications_black_24dp"
-        android:alpha="0"
-        tools:alpha="100">
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameEditText"
@@ -107,13 +75,8 @@
         android:text="@string/email"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout" />
-=======
-        app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout"
-        android:alpha="0"
-        tools:alpha="100"/>
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
@@ -125,13 +88,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-<<<<<<< HEAD
         app:startIconDrawable="@drawable/ic_baseline_email_24">
-=======
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        android:alpha="0"
-        tools:alpha="100">
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEditText"
@@ -150,13 +108,7 @@
         android:text="@string/password"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
-=======
-        app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
-        android:alpha="0"
-        tools:alpha="100"/>
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditTextLayout"
@@ -169,13 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-<<<<<<< HEAD
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
-=======
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        android:alpha="0"
-        tools:alpha="100">
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEditText"
@@ -185,7 +131,7 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-<<<<<<< HEAD
+
     <TextView
         android:id="@+id/ageTextView"
         android:layout_width="wrap_content"
@@ -217,9 +163,6 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
     <Button
         android:id="@+id/signupButton"
         android:layout_width="0dp"
@@ -230,31 +173,8 @@
         android:backgroundTint="@color/navy"
         android:text="@string/signup"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageEditTextLayout" />
-=======
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
-        android:alpha="0"
-        tools:alpha="100"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.30191082"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 </androidx.constraintlayout.widget.ConstraintLayout>

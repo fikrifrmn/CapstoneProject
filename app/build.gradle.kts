@@ -15,12 +15,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-<<<<<<< HEAD
 
         buildConfigField("String", "API_KEY", "\"8a0d3f9a88b34b619fa80bf987ab913b\"")
 
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
     }
 
     buildTypes {
@@ -42,10 +40,8 @@ android {
     buildFeatures {
         viewBinding = true
         mlModelBinding = true
-<<<<<<< HEAD
         buildConfig = true
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
     }
 
 
@@ -85,7 +81,6 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite:2.14.0")
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
 
-<<<<<<< HEAD
     //Retrofit + Interceptor
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -95,6 +90,5 @@ dependencies {
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.15.1")
 
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
+
 }

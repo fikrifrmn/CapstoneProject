@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/alert" />
 
-<<<<<<< HEAD
+
     <item
         android:id="@+id/navigation_nearby"
         android:icon="@drawable/ic_baseline_location_on_24"
@@ -21,6 +21,4 @@
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/setting" />
 
-=======
->>>>>>> d31399869ce56d62f7db37226c5130d473ae5d61
 </menu>
