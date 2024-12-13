@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
             ViewModelFactory.getInstance(requireContext())
         )[LoginViewModel::class.java]
 
-        binding.tvRegister.setOnClickListener{
+        binding.tvRegister2.setOnClickListener{
             val navController = requireActivity().findNavController(R.id.nav_host_fragment)
             navController.navigate(R.id.navigation_signup)
         }

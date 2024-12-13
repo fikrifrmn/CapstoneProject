@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 data class CreateTripResponse(
 
 	@field:SerializedName("data")
-	val data: Data,
+	val data: DataCreateTrip,
 
 	@field:SerializedName("message")
 	val message: String
 )
 
-data class Data(
+data class DataCreateTrip(
 
 	@field:SerializedName("start_location")
 	val startLocation: String,

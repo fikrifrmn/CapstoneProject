@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
+    android:id="@+id/fragment_setting"
     tools:context="ui.profile.ProfileFragment">
 
 
@@ -107,6 +108,9 @@
                                     android:id="@+id/inputLayoutName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:focusable="false"
+                                    android:clickable="false"
+                                    tools:ignore="UnusedAttribute"
                                     android:layout_marginTop="16dp"
                                     android:hint="@string/setting_name"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -115,102 +119,16 @@
                                         android:id="@+id/edtName"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:focusable="false"
+                                        android:clickable="false"
+                                        tools:ignore="UnusedAttribute"
+                                        android:background="#e9e9e9"
                                         android:padding="16dp"
                                         android:inputType="textMultiLine"
                                         android:scrollHorizontally="false" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
                         </LinearLayout>
-
-                        <View
-                            android:id="@+id/view4"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="6dp"
-                            android:background="#D9D9D9" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/inputLayoutAge"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="16dp"
-                                    android:hint="@string/setting_age"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                                    <androidx.appcompat.widget.AppCompatEditText
-                                        android:id="@+id/edtAge"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:padding="16dp"
-                                        android:inputType="textMultiLine"
-                                        android:scrollHorizontally="false" />
-                                </com.google.android.material.textfield.TextInputLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/view5"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="6dp"
-                            android:background="#D9D9D9" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/inputLayoutAddress"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="16dp"
-                                    android:hint="@string/setting_address"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                                    <androidx.appcompat.widget.AppCompatEditText
-                                        android:id="@+id/edtAddress"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:padding="16dp"
-                                        android:inputType="textMultiLine"
-                                        android:scrollHorizontally="false" />
-                                </com.google.android.material.textfield.TextInputLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/view6"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="6dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="6dp"
-                            android:background="#D9D9D9" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -231,7 +149,7 @@
                                     android:hint="@string/setting_password"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                                    <androidx.appcompat.widget.AppCompatEditText
+                                    <com.example.driverattentiveness.ui.PasswordEditText
                                         android:id="@+id/edtPassword"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -251,37 +169,6 @@
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="6dp"
                             android:background="#D9D9D9" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/inputLayoutPhone"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="16dp"
-                                    android:hint="@string/setting_phone"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                                    <androidx.appcompat.widget.AppCompatEditText
-                                        android:id="@+id/edtPhone"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:padding="16dp"
-                                        android:inputType="textMultiLine"
-                                        android:scrollHorizontally="false" />
-                                </com.google.android.material.textfield.TextInputLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

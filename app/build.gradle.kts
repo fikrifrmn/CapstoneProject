@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.gridlayout)
 
 
     testImplementation(libs.junit)

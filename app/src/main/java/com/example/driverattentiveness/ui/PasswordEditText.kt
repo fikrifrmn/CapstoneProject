@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
@@ -17,7 +18,6 @@ class PasswordEditText : AppCompatEditText {
 
     private lateinit var clearButtonImage: Drawable
     private var isPasswordVisible = false
-
 
     constructor(context: Context) : super(context) {
         init()
@@ -37,11 +37,9 @@ class PasswordEditText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Password must at least be 8 length"
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
         maxLines = 1
     }
-
 
     private fun init() {
         addTextChangedListener(object : TextWatcher {
@@ -55,25 +53,21 @@ class PasswordEditText : AppCompatEditText {
                 if (s.length < 8) {
                     error = context.getString(R.string.need_more_char_8)
                 }
-
-
             }
 
             override fun afterTextChanged(s: Editable) {
                 if (s.length < 8) {
                     error = context.getString(R.string.need_more_char_8)
                 }
-
-
             }
         })
 
-        // Set the password toggle icon
+        // Set the initial password toggle icon
         setDrawableEndIcon()
 
         // Set up the click listener for the password visibility toggle
         setOnTouchListener { _, event ->
-            if (compoundDrawables[2] != null && event.action == android.view.MotionEvent.ACTION_UP) {
+            if (compoundDrawables[2] != null && event.action == MotionEvent.ACTION_UP) {
                 val drawableEnd = compoundDrawables[2]
                 val width = width
                 val touchWidth = (width - paddingRight - drawableEnd.bounds.width())
@@ -88,20 +82,27 @@ class PasswordEditText : AppCompatEditText {
     }
 
     private fun setDrawableEndIcon() {
-        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.password_icon) ?: return
+        // Set initial password visibility icon (invisible)
+        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.password_icon_invisible) ?: return
         setCompoundDrawablesWithIntrinsicBounds(null, null, clearButtonImage, null)
     }
 
     private fun togglePasswordVisibility() {
-        if (isPasswordVisible) {
-            transformationMethod = PasswordTransformationMethod.getInstance() // Hide password
-            clearButtonImage = ContextCompat.getDrawable(context, R.drawable.password_icon) ?: return
-        } else {
-            transformationMethod = HideReturnsTransformationMethod.getInstance() // Show password
-            clearButtonImage = ContextCompat.getDrawable(context, R.drawable.password_icon) ?: return
-        }
-        setCompoundDrawablesWithIntrinsicBounds(null, null, clearButtonImage, null)
+        // Toggle the password visibility state
         isPasswordVisible = !isPasswordVisible
-    }
 
+        // Set the transformation method based on the visibility state
+        if (isPasswordVisible) {
+            // Show password
+            transformationMethod = HideReturnsTransformationMethod.getInstance()
+            clearButtonImage = ContextCompat.getDrawable(context, R.drawable.password_icon_visible) ?: return
+        } else {
+            // Hide password
+            transformationMethod = PasswordTransformationMethod.getInstance()
+            clearButtonImage = ContextCompat.getDrawable(context, R.drawable.password_icon_invisible) ?: return
+        }
+
+        // Update the drawable icon
+        setCompoundDrawablesWithIntrinsicBounds(null, null, clearButtonImage, null)
+    }
 }

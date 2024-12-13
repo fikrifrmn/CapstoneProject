@@ -1,46 +1,58 @@
-package com.example.driverattentiveness.ui
+package com.dicoding.intermediatefirst.view
 
 import android.content.Context
-import android.graphics.drawable.Drawable
-import android.text.TextUtils
+import android.graphics.Canvas
+import android.graphics.Color
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
+import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.widget.addTextChangedListener
 import com.example.driverattentiveness.R
 
 class EmailEditText @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : AppCompatEditText(context, attrs, defStyleAttr) { // Ganti menjadi AppCompatEditText
-
-    private var doneIcon: Drawable? = null
+    context: Context, attrs: AttributeSet? = null
+) : AppCompatEditText(context, attrs) {
 
     init {
-        // Menetapkan icon done pada drawableEnd
-        doneIcon = ResourcesCompat.getDrawable(resources, R.drawable.baseline_done_24, null) // Gunakan ResourcesCompat
-        this.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, doneIcon, null)
+        addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
-        // Memantau perubahan teks
-        addTextChangedListener {
-            validateEmail()
-        }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (s.toString().isNotEmpty()) validateEmail() else hideErrorAndIcon()
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 
     private fun validateEmail() {
-        // Cek apakah teks yang dimasukkan merupakan email yang valid
-        val isValidEmail = !TextUtils.isEmpty(text) && Patterns.EMAIL_ADDRESS.matcher(text).matches()
+        val inputText = text.toString().trim()
+        val drawable = compoundDrawables[2] // Access the drawableEnd (icon at the end of the EditText)
 
-        if (isValidEmail) {
-            // Jika email valid, tampilkan icon done
-            doneIcon?.let {
-                setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, it, null)
+        when {
+            inputText.isEmpty() -> {
+                hideErrorAndIcon()
             }
-        } else {
-            // Jika email tidak valid, hilangkan icon done
-            setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
+            !Patterns.EMAIL_ADDRESS.matcher(inputText).matches() -> {
+                hideErrorAndIcon()
+            }
+            else -> {
+                if (drawable != null) {
+                    drawable.setColorFilter(context.getColor(R.color.green), android.graphics.PorterDuff.Mode.SRC_IN)
+                }
+            }
         }
+    }
+
+    private fun hideErrorAndIcon() {
+        val drawable = compoundDrawables[2]
+        drawable?.clearColorFilter()
     }
 }

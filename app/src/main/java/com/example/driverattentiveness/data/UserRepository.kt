@@ -1,5 +1,8 @@
 package com.example.driverattentiveness.data
 
+import android.util.Log
+import com.example.driverattentiveness.data.api.response.CreateTripResponse
+import com.example.driverattentiveness.data.api.response.DataItem
 import com.example.driverattentiveness.data.api.response.LoginResponse
 import com.example.driverattentiveness.data.api.response.UpdateResponse
 import com.example.driverattentiveness.data.api.retrofit.ApiConfig
@@ -9,6 +12,7 @@ import com.example.driverattentiveness.data.pref.UserPreference
 import com.example.driverattentiveness.ui.setting.UserUpdateRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -53,6 +57,21 @@ class UserRepository private constructor(
         }
         return response
     }
+
+    suspend fun saveTripId(tripId: String) {
+        userPreference.saveTripId(tripId)
+    }
+
+    suspend fun incrementAlertCount() {
+        userPreference.incrementAlertCount()
+        val currentCount = userPreference.getAlertCount().first()
+        Log.d("UserRepository", "Alert count incremented to: $currentCount")
+    }
+
+    fun getAlertCount(): Flow<Int> {
+        return userPreference.getAlertCount()
+    }
+
 
 
     suspend fun logout() {

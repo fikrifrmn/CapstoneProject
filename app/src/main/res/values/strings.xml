@@ -42,7 +42,7 @@
     <string name="maps">Maps</string>
     <string name="guidance">Guidance</string>
 
-    //maps
+    <!-- maps   -->
     <string name="start_driving">Start Driving</string>
     <string name="stop_running">Stop Running</string>
     <string name="start_point">Start Point</string>
@@ -71,12 +71,14 @@
     <string name="title_menu_1">Membantu memonitoring supir</string>
     <string name="desc_menu_1">Membantu pengendara untuk meningkatkan kesadaran supir agar menghindari kecelakaan</string>
     <string name="get_started">Get Started</string>
-    <string name="register_text">Don\'t have an account? <b>Register here</b></string>
+    <string name="register_text1">Don\'t have an account?</string>
+    <string name="register_text2">Register here</string>
     <string name="input_validation_error">Please input name and password</string>
     <string name="update_success">Update Success</string>
     <string name="update_failed">Update Failed</string>
     <string name="google_maps_key">AIzaSyAMdD39FxCzxDrKUiw8fxamuwuciEvY_Sw</string>
     <string name="need_more_char_8">Password needs at least 8 characters</string>
+
 
     <!--Recycler View Article Item-->
     <string name="describe_img">Image Header</string>
@@ -91,4 +93,25 @@
     <string name="desc_menu_2">Memberikan alarm yang berfungsi untuk meningkatkan kewaspadaan dan mengurangi risiko terjadinya kecelakaan.</string>
     <string name="title_menu_3">Membantu melacak supir</string>
     <string name="desc_menu_3">Melacak perjalanan supir</string>
+
+    <!-- camera -->
+    <string name="status_camera">Status</string>
+
+        <!-- Titles Guidance -->
+        <string name="title_speed_limit">Speed Limit Regulations</string>
+        <string name="title_defensive_driving">Defensive Driving Tips</string>
+        <string name="title_vehicle_maintenance">Vehicle Maintenance</string>
+        <string name="title_road_conditions">Awareness of Road Conditions</string>
+        <string name="title_emergency_readiness">Emergency Readiness</string>
+
+        <!-- Descriptions Guidance-->
+        <string name="desc_speed_limit">Follow posted speed limits to prevent accidents.</string>
+        <string name="desc_defensive_driving">Stay alert and anticipate potential hazards.</string>
+        <string name="desc_vehicle_maintenance">Ensure your vehicle is in top condition before driving.</string>
+        <string name="desc_road_conditions">Be aware of weather and road conditions to adjust your driving.</string>
+        <string name="driver_safety_guidelines">Driver Safety Guidelines</string>
+        <string name="essential_rules_for_ensuring_road_safety">Essential rules for ensuring road safety</string>
+        <string name="desc_emergency_readiness">Prepare for emergencies by carrying essential safety equipment and knowing evacuation procedures.</string>
+        <string name="already_have_an_account">Already have an account?</string>
+
 </resources>

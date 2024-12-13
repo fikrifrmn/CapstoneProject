@@ -24,6 +24,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[NAME_KEY] = user.name
             preferences[ID_KEY] = user.id
             preferences[AGE_KEY] = user.age
+            preferences[USER_TRIP_KEY] = user.tripId
         }
         Log.d("UserPreference", "Session saved: email=${user.email}, token=${user.token}, name=${user.name}, id=${user.id}, age=${user.age}")
     }
@@ -36,9 +37,38 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 preferences[IS_LOGIN_KEY] ?: false,
                 preferences[NAME_KEY] ?: "",
                 preferences[ID_KEY] ?: "",
-                preferences[AGE_KEY] ?: 0
+                preferences[AGE_KEY] ?: 0,
+                preferences[USER_TRIP_KEY] ?: ""
             )
         }
+    }
+
+    suspend fun saveTripId(tripId: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_TRIP_KEY] = tripId
+        }
+        Log.d("UserPreference", "Trip ID saved: $tripId")
+    }
+
+    suspend fun incrementAlertCount() {
+        dataStore.edit { preferences ->
+            val currentCount = preferences[ALERT_COUNT_KEY] ?: 0
+            preferences[ALERT_COUNT_KEY] = currentCount + 1
+        }
+        Log.d("UserPreference", "Alert count incremented")
+    }
+
+    fun getAlertCount(): Flow<Int> {
+        return dataStore.data.map { preferences ->
+            preferences[ALERT_COUNT_KEY] ?: 0
+        }
+    }
+
+    suspend fun resetAlertCount() {
+        dataStore.edit { preferences ->
+            preferences[ALERT_COUNT_KEY] = 0
+        }
+        Log.d("UserPreference", "Alert count reset")
     }
 
     suspend fun logout() {
@@ -57,6 +87,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val NAME_KEY = stringPreferencesKey("name")
         private val ID_KEY = stringPreferencesKey("id")
         private val AGE_KEY = intPreferencesKey("age")
+        private val USER_TRIP_KEY = stringPreferencesKey("user_trip_key")
+        private val ALERT_COUNT_KEY = intPreferencesKey("alert_count")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {

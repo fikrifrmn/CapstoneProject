@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navOptions
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -14,6 +15,7 @@ import com.example.driverattentiveness.data.api.retrofit.ApiConfig
 import com.example.driverattentiveness.data.pref.UserPreference
 import com.example.driverattentiveness.data.pref.dataStore
 import com.example.driverattentiveness.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -49,16 +51,12 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
 
-        // Tentukan startDestination berdasarkan status login yang diterima dari SplashScreenActivity
-        val startDestination = if (isLogin) {
-            R.id.navigation_home
-        } else {
-            R.id.navigation_welcome
-        }
 
         // Update graph startDestination
         val navGraph = navController.navInflater.inflate(R.navigation.mobile_navigation)
-        navGraph.setStartDestination(startDestination)
+        navGraph.setStartDestination(
+            if (isLogin) R.id.navigation_home else R.id.navigation_welcome
+        )
         navController.graph = navGraph
 
         val appBarConfiguration = AppBarConfiguration(
@@ -66,5 +64,15 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navController)
+
+    }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.nav_host_fragment)
+        if (navController.currentDestination?.id == R.id.navigation_home) {
+            finish() // Keluar aplikasi jika di Home
+        } else {
+            super.onBackPressed() // Navigasi back default
+        }
     }
 }

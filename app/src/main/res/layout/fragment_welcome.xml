@@ -40,7 +40,8 @@
     <ImageView
         android:id="@+id/logoMenu2"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/image_driver_status_monitoring_system"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,9 +53,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-condensed-light"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/logoMenu2"
@@ -67,9 +68,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-condensed-light"
+        android:fontFamily="@font/roboto_regular"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/titleMenu2"
         app:layout_constraintStart_toStartOf="@+id/titleMenu2"
@@ -79,10 +80,10 @@
     <ImageView
         android:id="@+id/logoMenu3"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:src="@drawable/image_driver_status_monitoring_system"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="parent"
+        android:src="@drawable/image_navigation_driver"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.245" />
 
@@ -91,9 +92,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-condensed-light"
+        android:fontFamily="@font/roboto_medium"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/logoMenu3"
@@ -106,9 +107,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-condensed-light"
+        android:fontFamily="@font/roboto_regular"
         android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/titleMenu3"
         app:layout_constraintStart_toStartOf="@+id/titleMenu3"
@@ -126,7 +127,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:srcCompat="@drawable/ic_circle_24"
-        app:tint="@color/blue" />
+        app:tint="@color/white" />
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/menu2"
@@ -140,7 +141,7 @@
         app:layout_constraintTop_toTopOf="@+id/menu1"
         app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/ic_circle_24"
-        app:tint="@color/blue" />
+        app:tint="@color/white" />
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/menu3"
@@ -155,7 +156,7 @@
         app:layout_constraintTop_toTopOf="@+id/menu2"
         app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/ic_circle_24"
-        app:tint="@color/blue" />
+        app:tint="@color/white" />
 
 
     <Button
@@ -170,6 +171,7 @@
         android:alpha="1"
         android:background="@drawable/background_button"
         android:text="@string/get_started"
+        android:fontFamily="@font/poppins_medium"
         app:layout_constraintBottom_toTopOf="@+id/menu2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -179,9 +181,10 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:elevation="8dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/logo_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_app" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

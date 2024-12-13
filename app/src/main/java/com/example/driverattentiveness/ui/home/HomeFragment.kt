@@ -8,23 +8,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.driverattentiveness.BuildConfig
 import com.example.driverattentiveness.data.adapter.ArticleAdapter
-import com.example.driverattentiveness.data.api.response.ArticleResponse
-import com.example.driverattentiveness.data.api.response.ArticlesItem
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import com.example.driverattentiveness.R
 import com.example.driverattentiveness.ViewModelFactory
+import com.example.driverattentiveness.data.UserRepository
 import com.example.driverattentiveness.data.api.retrofit.ApiArticleConfig
+import com.example.driverattentiveness.data.api.retrofit.ApiConfig
+import com.example.driverattentiveness.data.database.DatabaseHelper
+import com.example.driverattentiveness.data.pref.UserPreference
+import com.example.driverattentiveness.data.pref.dataStore
 import com.example.driverattentiveness.databinding.FragmentHomeBinding
-import com.example.driverattentiveness.ui.login.LoginViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class HomeFragment : Fragment() {
@@ -33,6 +36,10 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: ArticleAdapter
     private val binding get() = _binding!!
     private lateinit var  homeViewModel: HomeViewModel
+    private lateinit var tvKilometerHome: TextView
+    private lateinit var databaseHelper: DatabaseHelper
+    private lateinit var userRepository: UserRepository
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,18 +49,38 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
         homeViewModel = ViewModelProvider(
             this,
             ViewModelFactory.getInstance(requireContext())
         )[HomeViewModel::class.java]
 
         setupView()
+        observeAlertCount()
         setupRecyclerView()
         observeViewModel()
         showBottomNavigation()
 
         homeViewModel.fetchArticles()
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        tvKilometerHome = binding.tvKilometerHome
+
+        userRepository = UserRepository.getInstance(UserPreference.getInstance(requireContext().dataStore), ApiConfig.getApiService(""))
+        databaseHelper = DatabaseHelper(requireContext())
+
+
+        lifecycleScope.launch {
+            val user = userRepository.getSession().first()
+            val totalDistance = databaseHelper.getTotalDistance(user.id)
+            tvKilometerHome.text = "$totalDistance km"// Get total distance based on user ID
+            Log.d("HomeFragment", "Total Distance: $totalDistance km")
+            // Update UI with totalDistance
+        }
     }
 
     private fun setupRecyclerView() {
@@ -109,6 +136,17 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun observeAlertCount() {
+        val userPreference = UserPreference.getInstance(requireContext().dataStore)
+
+        // Launch coroutine to get the alert count
+        lifecycleScope.launch {
+            val alertCount = userPreference.getAlertCount().first() // Get alert count from preferences
+            binding.tvAlertScoreHome.text = "$alertCount" // Display it in the TextView
+            Log.d(TAG, "Alert Count: $alertCount") // For debug purpose
+        }
+    }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
@@ -123,4 +161,3 @@ class HomeFragment : Fragment() {
         private const val TAG = "HomeFragment"
     }
 }
-

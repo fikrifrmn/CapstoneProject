@@ -19,9 +19,16 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.driverattentiveness.R
+import com.example.driverattentiveness.data.UserRepository
+import com.example.driverattentiveness.data.api.retrofit.ApiConfig
+import com.example.driverattentiveness.data.pref.UserPreference
+import com.example.driverattentiveness.data.pref.dataStore
 import com.example.driverattentiveness.databinding.FragmentCameraBinding
 import io.socket.engineio.parser.Base64
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.net.URISyntaxException
 import java.util.concurrent.ExecutorService
@@ -40,6 +47,7 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
     private lateinit var binding: FragmentCameraBinding
     private lateinit var detector: Detector
     private lateinit var cameraExecutor: ExecutorService
+    private lateinit var userRepository: UserRepository
     private val viewModel: CameraViewModel by viewModels()
 
     private lateinit var mSocket: Socket
@@ -55,7 +63,13 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initializeSocket()
+        val userPreference = UserPreference.getInstance(requireContext().dataStore)
+        val apiService = ApiConfig.getApiService("") // Token kosong karena kita akan logout
+        userRepository = UserRepository.getInstance(userPreference, apiService)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            initializeSocket()
+        }
 
         // Initialize the detector
         detector = Detector(requireContext(), Constants.MODEL_PATH, Constants.LABELS_PATH, this)
@@ -75,11 +89,14 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    private fun initializeSocket() {
+    private suspend fun initializeSocket() {
         Log.d(TAG, "Log Initialized")
         try {
+            val userId = userRepository.getSession().first().id
+            Log.d(TAG, "User ID: $userId")
             val opts = IO.Options()
             opts.path = "/wsio/socket.io"
+            opts.query = "user_id= $userId"
             mSocket = IO.socket("http://34.101.170.152:8080", opts)
             mSocket.connect()
             mSocket.on(Socket.EVENT_CONNECT) {
@@ -97,7 +114,18 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
                         Log.d(TAG, "Prediction result: $prediction")
                         when (prediction) {
                             1 -> viewModel.updatePredictionResult("You are driving safely")
-                            0 -> viewModel.updatePredictionResult("You are not driving safely")
+                            0 -> {
+                                viewModel.updatePredictionResult("You are not driving safely")
+
+                                // Tambahkan alert ke sesi pengguna
+                                viewLifecycleOwner.lifecycleScope.launch {
+                                    userRepository.incrementAlertCount()
+
+                                    // Debug alert count setelah increment
+                                    val alertCount = userRepository.getAlertCount().first()
+                                    Log.d(TAG, "Alert count after increment: $alertCount")
+                                }
+                            }
                             -1 -> viewModel.updatePredictionResult("No detection")
                             else -> Log.e(TAG, "Unexpected prediction value: $prediction")
                         }
@@ -111,7 +139,6 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
         }
 
     }
-
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -142,7 +169,9 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
             try {
                 val bitmap = processImage(imageProxy)
                 detector.detect(bitmap)
-                sendFrame(bitmap)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    sendFrame(bitmap) // Panggil di dalam coroutine
+                }
             } catch (e: Exception) {
                 Log.e(TAG, "Image processing failed", e)
             } finally {
@@ -172,11 +201,15 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
     }
 
 
-    private fun sendFrame(rotatedBitmap: Bitmap) {
+    private suspend fun sendFrame(rotatedBitmap: Bitmap) {
         // Convert Bitmap to Base64-encoded string
-        val stream = ByteArrayOutputStream()
-        val byteArray = stream.toByteArray()
+        val userId = userRepository.getSession().first().id
         val base64String = bitmapToBase64(rotatedBitmap)
+        val data = mapOf(
+            "user_id" to userId,
+            "image" to base64String
+        )
+        Log.d(TAG, "Data to be sent: $data")
         mSocket.emit("image", base64String)
 
         if (mSocket.connected()) {
@@ -219,6 +252,15 @@ class CameraFragment : Fragment(), Detector.DetectorListener {
         cameraExecutor.shutdown()
         mSocket.disconnect()
         Log.d(TAG, "onPause: Socket disconnected")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        cameraExecutor = Executors.newSingleThreadExecutor()
+        if (allPermissionsGranted()) {
+            startCamera()
+        } else {
+            requestPermissions(REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)}
     }
 
     override fun onDestroyView() {

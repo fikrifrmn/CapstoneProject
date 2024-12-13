@@ -16,6 +16,7 @@ import com.example.driverattentiveness.data.api.retrofit.ApiConfig
 import com.example.driverattentiveness.data.pref.UserPreference
 import com.example.driverattentiveness.data.pref.dataStore
 import com.example.driverattentiveness.databinding.FragmentProfileBinding
+import com.example.driverattentiveness.ui.setting.SettingFragment
 import com.example.driverattentiveness.ui.welcome.WelcomeFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,13 +56,14 @@ class ProfileFragment : Fragment() {
             Log.d("ProfileFragment", "User name: ${user.name}, email: ${user.email}")
             binding.tvProfileName.text = user.name
             binding.tvProfileEmail.text = user.email
-            binding.tvName.text = user.name
+            binding.nameField.text = user.name
+            binding.emailField.text = user.email
+        }
+        binding.passwordField.setOnClickListener {
+            val navController = view?.findNavController()
+            navController?.navigate(R.id.navigation_setting)
         }
 
-        binding.btnEditProfile.setOnClickListener{
-            val navController = requireActivity().findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.navigation_setting)
-        }
     }
 
     private fun logout() {
