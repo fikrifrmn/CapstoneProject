@@ -2,16 +2,16 @@ package com.example.driverattentiveness.data.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class TripResponse(
+data class AllTripResponse(
 
 	@field:SerializedName("data")
-	val data: Data,
+	val data: List<DataItem>,
 
 	@field:SerializedName("message")
 	val message: String
 )
 
-data class DataTrip(
+data class DataItem(
 
 	@field:SerializedName("start_location")
 	val startLocation: String,
